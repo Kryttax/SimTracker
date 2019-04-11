@@ -11,6 +11,7 @@ namespace SimTracker
     {
         public enum eventType { BUG, PROGRESS, LEVEL_AREA, COMPLETABLE }
 
+        public int user;
         public eventType type;
         public int level { get; set; }  //0 == TUTORIAL, 1 == FIRST LEVEL
         public string timeStamp { get; set; }
@@ -19,6 +20,7 @@ namespace SimTracker
 
         public TrackerEvent()
         {
+            user = SimTracker.instance.user;
             level = 0;
             timeStamp = DateTime.Now.ToString();
         }

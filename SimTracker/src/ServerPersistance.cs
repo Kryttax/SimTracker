@@ -18,45 +18,6 @@ namespace SimTracker
             
         }
 
-        void IPersistence.Send(TrackerEvent evnt)
-        {
-        //    try
-        //    {
-        //        string webAddr = "http://localhost:8080/tracker";
-
-        //        var httpWebRequest = (HttpWebRequest)WebRequest.Create(webAddr);
-        //        httpWebRequest.ContentType = "application/json; charset=utf-8";
-        //        httpWebRequest.Method = "POST";
-
-        //        Data newData = new Data();
-        //        JsonSerializer serializer1 = new JsonSerializer();
-
-               
-        //        newData.data = JsonConvert.SerializeObject(evnt);
-
-
-
-        //        using (var streamWriter = new StreamWriter(httpWebRequest.GetRequestStream()))
-        //        {
-        //            serializer.Serialize(streamWriter, newData);
-        //            //streamWriter.Write(serializer);
-
-        //            //streamWriter.Flush();
-        //        }
-
-        //        var httpResponse = (HttpWebResponse)httpWebRequest.GetResponse();
-        //        using (var streamReader = new StreamReader(httpResponse.GetResponseStream()))
-        //        {
-        //            var responseText = streamReader.ReadToEnd();
-        //            Console.WriteLine(responseText);
-        //        }
-        //    }
-        //    catch (WebException ex)
-        //    {
-        //        Console.WriteLine(ex.Message);
-        //    }
-        }
-
         void IPersistence.Send(string str)
         {
             try

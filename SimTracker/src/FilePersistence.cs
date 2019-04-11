@@ -10,14 +10,29 @@ namespace SimTracker
     class FilePersistence : IPersistence
     {
         string filePath = "..\\..\\logs\\";
-        int index = 0;
+        string path = null;
+        StreamWriter sw = null;
         void IPersistence.Send(string str)
         {
+         
+            if(path == null)
+            {
+                path = filePath + SimTracker.Instance().user + ".txt";
+            }
             //after your loop
-            File.WriteAllText(filePath + "newFile" + index + ".txt", str);
-            ++index;
+            if (!File.Exists(path))
+            {
+                sw = File.AppendText(path);
+                sw.WriteLine(str);
+                sw.Close();
+            }
+            else
+            {
+                sw = File.AppendText(path);
+                sw.WriteLine(str);
+                sw.Close();
+            }
         }
-
-        void IPersistence.Send(TrackerEvent evnt) { }
+        
     }
 }
