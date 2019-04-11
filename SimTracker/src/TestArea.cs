@@ -22,7 +22,7 @@ namespace SimTracker
 
             Thread.Sleep(1000);
             SimTracker.instance.PushEvent(new TrackerEvent());
-
+            
             Thread.Sleep(1000);
             SimTracker.instance.PushEvent(new TrackerEvent());
 
