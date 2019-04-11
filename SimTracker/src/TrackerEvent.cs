@@ -6,6 +6,7 @@ using System.Threading.Tasks;
 
 namespace SimTracker
 {
+    [Serializable]
     class TrackerEvent
     {
         public enum eventType { BUG, PROGRESS, LEVEL_AREA, COMPLETABLE }

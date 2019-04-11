@@ -25,7 +25,8 @@ namespace SimTracker
             csvFile.AppendLine(newLine);
 
 
-            return csvFile.ToString();
+            //return csvFile.ToString();
+            return newLine;
         }
     }
 }

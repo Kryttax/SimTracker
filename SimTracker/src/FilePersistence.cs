@@ -17,5 +17,7 @@ namespace SimTracker
             File.WriteAllText(filePath + "newFile" + index + ".txt", str);
             ++index;
         }
+
+        void IPersistence.Send(TrackerEvent evnt) { }
     }
 }

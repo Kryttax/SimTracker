@@ -60,8 +60,8 @@ namespace SimTracker
                     System.Console.WriteLine("Traza creada");
                     TrackerEvent obj = assetTrackerObject.Dequeue();
 
-                    persistenceObject[0].Send(obj.ToCSV());
                     persistenceObject[1].Send(obj.ToJson());
+                   // persistenceObject[1].Send(obj.ToJson());
 
 
 
@@ -76,8 +76,8 @@ namespace SimTracker
                 System.Console.WriteLine("Traza creada");
                 TrackerEvent obj = assetTrackerObject.Dequeue();
 
-                persistenceObject[0].Send(obj.ToCSV());
                 persistenceObject[1].Send(obj.ToJson());
+                //persistenceObject[1].Send(obj.ToJson());
             }
         }
 

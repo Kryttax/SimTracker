@@ -9,5 +9,6 @@ namespace SimTracker
     interface IPersistence
     {
         void Send(string str);
+        void Send(TrackerEvent evnt);
     }
 }
