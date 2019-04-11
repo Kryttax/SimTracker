@@ -1,0 +1,9 @@
+How to send data using Webrequest in C#:
+https://docs.microsoft.com/es-es/dotnet/framework/network-programming/how-to-send-data-using-the-webrequest-class
+https://stackoverflow.com/questions/36047410/c-sharp-json-post-using-httpwebrequest/36048030
+
+NuGet Package Manager:
+https://docs.microsoft.com/es-es/nuget/tools/package-manager-ui
+
+Json.NET:
+https://www.newtonsoft.com/json/help/html/SerializingJSON.htm

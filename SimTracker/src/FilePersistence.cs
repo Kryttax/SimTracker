@@ -14,7 +14,7 @@ namespace SimTracker
         void IPersistence.Send(string str)
         {
             //after your loop
-            File.WriteAllText(filePath + "newFile" + index + ".csv", str);
+            File.WriteAllText(filePath + "newFile" + index + ".txt", str);
             ++index;
         }
     }

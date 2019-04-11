@@ -27,9 +27,9 @@ namespace SimTracker
             return SimTracker.instance.serializaionObjct[0].Serialize(this);
         }
 
-        string ToJson()
+        public string ToJson()
         {
-            return null;
+            return SimTracker.instance.serializaionObjct[1].Serialize(this);
         }
     }
 }

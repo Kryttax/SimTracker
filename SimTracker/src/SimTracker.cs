@@ -19,10 +19,15 @@ namespace SimTracker
         bool alive, flag;
         Thread QueueCleaner;
 
+        int tick = 15;  //Thread tick
+
         private SimTracker()
         {
             serializaionObjct.Add(new CSVSerializer());
+            serializaionObjct.Add(new JSONSerializer());
             persistenceObject.Add(new FilePersistence());
+            persistenceObject.Add(new ServerPersistance());
+
             alive = true;
             flag = false;
             QueueCleaner = new Thread(runnable);
@@ -42,7 +47,8 @@ namespace SimTracker
                 result = dtnow.Subtract(dt);
                 seconds = Convert.ToInt32(result.TotalSeconds);
 
-                if (seconds > 15)
+                //Checks if there is events yet to be serialized every 15 seconds
+                if (seconds > tick)
                 {
                     flag = !flag;
                     seconds = 0;
@@ -55,6 +61,8 @@ namespace SimTracker
                     TrackerEvent obj = assetTrackerObject.Dequeue();
 
                     persistenceObject[0].Send(obj.ToCSV());
+                    persistenceObject[1].Send(obj.ToJson());
+
 
 
                 }
@@ -69,6 +77,7 @@ namespace SimTracker
                 TrackerEvent obj = assetTrackerObject.Dequeue();
 
                 persistenceObject[0].Send(obj.ToCSV());
+                persistenceObject[1].Send(obj.ToJson());
             }
         }
 
@@ -88,10 +97,10 @@ namespace SimTracker
             assetTrackerObject.Enqueue(evnt);
         }
 
-        public void WriteInFile()
-        {
-            persistenceObject[0].Send(assetTrackerObject.Dequeue().ToCSV());
-            //persistenceObject[0].Send(serializaionObjct[0].Serialize(assetTrackerObject.Dequeue()));
-        }
+        //public void WriteInFile()
+        //{
+        //    persistenceObject[0].Send(assetTrackerObject.Dequeue().ToCSV());
+        //    //persistenceObject[0].Send(serializaionObjct[0].Serialize(assetTrackerObject.Dequeue()));
+        //}
     }
 }
