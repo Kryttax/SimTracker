@@ -10,7 +10,7 @@ namespace SimTracker
 {
     class JSONSerializer : ISerializer
     {
-        string ISerializer.Serialize(TrackerEvent evnt)
+        string ISerializer.Serialize(IEvent evnt)
         {
             return JsonConvert.SerializeObject(evnt);
         }

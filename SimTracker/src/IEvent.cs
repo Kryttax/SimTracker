@@ -6,8 +6,10 @@ using System.Threading.Tasks;
 
 namespace SimTracker
 {
-    interface ISerializer
+    interface IEvent
     {
-        string Serialize(IEvent _event);
+        string ToCSV();
+
+        string ToJson();
     }
 }

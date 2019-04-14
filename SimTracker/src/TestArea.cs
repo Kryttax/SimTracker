@@ -18,13 +18,13 @@ namespace SimTracker
 
             SimTracker.Instance();
 
-            SimTracker.instance.PushEvent(new TrackerEvent());
+           // SimTracker.instance.PushEvent(new ProgressEvent());
 
             Thread.Sleep(1000);
-            SimTracker.instance.PushEvent(new TrackerEvent());
+            SimTracker.instance.PushEvent(new ProgressEvent(1));
             
             Thread.Sleep(1000);
-            SimTracker.instance.PushEvent(new TrackerEvent());
+            SimTracker.instance.PushEvent(new ProgressEvent(1));
 
             SimTracker.instance.StopCleaning();
         }

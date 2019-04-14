@@ -3,31 +3,24 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using CsvHelper;
 
 namespace SimTracker
 {
     class CSVSerializer : ISerializer
     {
-        StringBuilder csvFile;
-
-        string ISerializer.Serialize(TrackerEvent evnt)
+        string ISerializer.Serialize(IEvent evnt)
         {
-            csvFile = new StringBuilder();
+            var records = new List<dynamic> { evnt };
 
-            string p0, p1, p2,p3;
-
-            //Depende del tipo de evento (por asignar)
-            p0 = evnt.timeStamp.ToString();
-            p1 = evnt.user.ToString();
-            p2 = evnt.level.ToString();
-            p3 = evnt.type.ToString();
-            
-            string newLine = string.Format("{0},{1},{2},{3}", p0, p1, p2, p3);
-            csvFile.AppendLine(newLine);
-
+            var writer = new System.IO.StringWriter();
+            using (var csv = new CsvWriter(writer))
+            {
+                csv.WriteRecords(records);
+            }
 
             //return csvFile.ToString();
-            return newLine;
+            return writer.ToString();
         }
     }
 }

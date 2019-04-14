@@ -9,15 +9,19 @@ namespace SimTracker
 {
     class FilePersistence : IPersistence
     {
-        string filePath = "..\\..\\logs\\";
+        static string enviromentPath = AppDomain.CurrentDomain.BaseDirectory;
+        
+        string filePath = @"..\\..\\logs\\";    //UNITY: @"Assets\SimTracker\logs\"
         string path = null;
         StreamWriter sw = null;
+
         void IPersistence.Send(string str)
         {
-         
-            if(path == null)
+
+            if (path == null)
             {
-                path = filePath + SimTracker.Instance().user + ".txt";
+                string fileName = SimTracker.Instance().user + ".txt";
+                path = Path.Combine(enviromentPath, filePath, fileName);
             }
             //after your loop
             if (!File.Exists(path))

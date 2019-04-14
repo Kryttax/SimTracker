@@ -20,7 +20,7 @@ namespace SimTracker
         bool alive, flag; // bools for controling the thread
         Thread QueueCleaner;
         public int user { get; }
-        int tick = 15;  //Thread tick
+        int tick = 3;  //Thread tick
 
         private SimTracker()
         {
