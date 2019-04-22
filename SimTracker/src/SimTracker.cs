@@ -20,7 +20,7 @@ namespace SimTracker
         bool alive, flag; // bools for controling the thread
         Thread QueueCleaner;
         public int user { get; }
-        int tick = 3;  //Thread tick
+        int tick = 3;  //Thread tick (in seconds)
 
         private SimTracker()
         {
@@ -111,11 +111,5 @@ namespace SimTracker
         {
             assetTrackerObject.Enqueue(evnt);
         }
-
-        //public void WriteInFile()
-        //{
-        //    persistenceObject[0].Send(assetTrackerObject.Dequeue().ToCSV());
-        //    //persistenceObject[0].Send(serializaionObjct[0].Serialize(assetTrackerObject.Dequeue()));
-        //}
     }
 }
