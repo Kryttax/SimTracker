@@ -25,6 +25,7 @@ namespace SimTracker
             
             Thread.Sleep(1000);
             SimTracker.instance.PushEvent(new ProgressEvent(1));
+            SimTracker.instance.PushEvent(new ProgressEvent(0, "first room", 20, 50, 70.5));
 
             SimTracker.instance.StopCleaning();
         }

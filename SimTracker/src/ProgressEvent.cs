@@ -25,6 +25,7 @@ namespace SimTracker
         public PlayerPosition playerPos { get; set; }
         public string _room { get; set; }
 
+        //Test Event
         public ProgressEvent(int level)
             : this(level, string.Empty, -1, -1, -1) { }
 

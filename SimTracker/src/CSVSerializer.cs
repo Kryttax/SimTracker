@@ -19,7 +19,6 @@ namespace SimTracker
                 csv.WriteRecords(records);
             }
 
-            //return csvFile.ToString();
             return writer.ToString();
         }
     }

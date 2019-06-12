@@ -13,7 +13,7 @@ namespace SimTracker
             
         }
 
-        void IPersistence.Send(string str)
+        void IPersistence.Send<T>(T str)
         {
             try
             {
@@ -23,17 +23,13 @@ namespace SimTracker
                 httpWebRequest.ContentType = "application/json; charset=utf-8";
                 httpWebRequest.Method = "POST";
                 Data newData = new Data();
-                newData.data = str;
-
-                //byte[] byteArray = Encoding.UTF8.GetBytes(newData.ToString());
-                //httpWebRequest.ContentLength = byteArray.Length;
+                newData.data = str.ToString();
 
                 JsonSerializer serializer = new JsonSerializer();
 
                 using (var streamWriter = new StreamWriter(httpWebRequest.GetRequestStream()))
                 {
                     serializer.Serialize(streamWriter, newData);
-                    //streamWriter.Flush();
                 }
 
                 var httpResponse = (HttpWebResponse)httpWebRequest.GetResponse();

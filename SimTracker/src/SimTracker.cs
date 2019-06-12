@@ -24,7 +24,7 @@ namespace SimTracker
 
         private SimTracker()
         {
-            user = generateUserId();
+            user = GenerateUserId();
             serializaionObjct.Add(new CSVSerializer());
             serializaionObjct.Add(new JSONSerializer());
             persistenceObject.Add(new FilePersistence());
@@ -32,11 +32,11 @@ namespace SimTracker
 
             alive = true;
             flag = false;
-            QueueCleaner = new Thread(runnable);
+            QueueCleaner = new Thread(Runnable);
             QueueCleaner.Start();
         }
 
-        private int generateUserId()
+        private int GenerateUserId()
         {
             Random random = new Random();
             int num = 0;
@@ -52,7 +52,7 @@ namespace SimTracker
             return num;
         }
 
-        private void runnable()
+        private void Runnable()
         {
             DateTime dt = DateTime.Now;
             DateTime dtnow;
@@ -75,7 +75,7 @@ namespace SimTracker
 
                 while (flag && assetTrackerObject.Any())
                 {
-                    System.Console.WriteLine("Traza creada");
+                    Console.WriteLine("New trace generated");
                     TrackerEvent obj = assetTrackerObject.Dequeue();
 
                     persistenceObject[0].Send(obj.ToCSV());
@@ -88,7 +88,7 @@ namespace SimTracker
 
             while (assetTrackerObject.Any())
             {
-                System.Console.WriteLine("Traza creada");
+                Console.WriteLine("New trace generated");
                 TrackerEvent obj = assetTrackerObject.Dequeue();
 
                 persistenceObject[0].Send(obj.ToCSV());
@@ -100,6 +100,7 @@ namespace SimTracker
         {
             alive = false;
         }
+
         public static SimTracker Instance()
         {
             if (instance == null)
