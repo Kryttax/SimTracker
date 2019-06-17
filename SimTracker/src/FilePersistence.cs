@@ -23,11 +23,11 @@ namespace SimTracker
             if (path == null)
             {
                 if(str is JSONSerializer)
-                    fileName = SimTracker.Instance().user + ".json";
+                    fileName = SimTracker.Instance.user + ".json";
                 else if(str is CSVSerializer)
-                    fileName = SimTracker.Instance().user + ".csv";
+                    fileName = SimTracker.Instance.user + ".csv";
                 else if (str is string)
-                    fileName = SimTracker.Instance().user + ".txt";
+                    fileName = SimTracker.Instance.user + ".csv";
                 else
                 {
                     Console.WriteLine("Object is not serialized correctly.");
@@ -41,16 +41,9 @@ namespace SimTracker
 #endif
             }
 
-            //if (!File.Exists(path))
-            //{
-            //    sw = File.AppendText(path);
-            //    sw.WriteLine(str);
-            //    sw.Close();
-            //}
-            //else
             {
                 sw = File.AppendText(path);
-                sw.WriteLine(str);
+                sw.Write(str);
                 sw.Close();
             }
         }

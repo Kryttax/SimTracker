@@ -58,7 +58,9 @@
     <Compile Include="src\IPersistence.cs" />
     <Compile Include="src\ISerializer.cs" />
     <Compile Include="src\JSONSerializer.cs" />
-    <Compile Include="src\ProgressEvent.cs" />
+    <Compile Include="src\Persistence.cs" />
+    <Compile Include="src\Events.cs" />
+    <Compile Include="src\Serializer.cs" />
     <Compile Include="src\ServerPersistance.cs" />
     <Compile Include="src\SimTracker.cs" />
     <Compile Include="src\TestArea.cs" />

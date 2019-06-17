@@ -1,0 +1,18 @@
+_room;_userId;_timeStamp;_type;_level
+;-1240923667;17/06/2019 11:41:57;PROGRESS;1
+
+
+{"playerPos":{"X":-1.0,"Y":-1.0,"Z":-1.0},"_room":"","_userId":-1240923667,"_timeStamp":"17/06/2019 11:41:57","_type":"PROGRESS","_level":1}
+
+_room;_userId;_timeStamp;_type;_level
+;-1240923667;17/06/2019 11:41:58;PROGRESS;1
+
+
+{"playerPos":{"X":-1.0,"Y":-1.0,"Z":-1.0},"_room":"","_userId":-1240923667,"_timeStamp":"17/06/2019 11:41:58","_type":"PROGRESS","_level":1}
+
+_room;_userId;_timeStamp;_type;_level
+first room;-1240923667;17/06/2019 11:41:58;PROGRESS;0
+
+
+{"playerPos":{"X":20.0,"Y":50.0,"Z":70.5},"_room":"first room","_userId":-1240923667,"_timeStamp":"17/06/2019 11:41:58","_type":"PROGRESS","_level":0}
+

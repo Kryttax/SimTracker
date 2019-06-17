@@ -1,0 +1,12 @@
+SimTracker.ProgressEvent
+
+{"playerPos":{"X":-1.0,"Y":-1.0,"Z":-1.0},"_room":"","_userId":198909837,"_timeStamp":"17/06/2019 11:46:56","_type":"PROGRESS","_level":1}
+
+SimTracker.ProgressEvent
+
+{"playerPos":{"X":-1.0,"Y":-1.0,"Z":-1.0},"_room":"","_userId":198909837,"_timeStamp":"17/06/2019 11:46:57","_type":"PROGRESS","_level":1}
+
+SimTracker.ProgressEvent
+
+{"playerPos":{"X":20.0,"Y":50.0,"Z":70.5},"_room":"first room","_userId":198909837,"_timeStamp":"17/06/2019 11:46:57","_type":"PROGRESS","_level":0}
+

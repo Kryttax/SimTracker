@@ -12,7 +12,7 @@ namespace SimTracker
     {
         string ISerializer.Serialize(IEvent evnt)
         {
-            return JsonConvert.SerializeObject(evnt);
+            return JsonConvert.SerializeObject(evnt, Formatting.Indented);
         }
     }
 }

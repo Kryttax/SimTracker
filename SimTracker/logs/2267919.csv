@@ -1,0 +1,51 @@
+_userId;_dateStamp;_timeStamp;_type;_level;2267919;17/06/2019;15:06:32.9701786;PROGRESS;1
+
+
+{
+  "playerPos": {
+    "X": -1.0,
+    "Y": -1.0,
+    "Z": -1.0
+  },
+  "_room": "",
+  "_userId": 2267919,
+  "_dateStamp": "17/06/2019",
+  "_timeStamp": "15:06:32.9701786",
+  "_type": "PROGRESS",
+  "_level": 1
+}
+
+_userId;_dateStamp;_timeStamp;_type;_level;2267919;17/06/2019;15:06:33.9724969;PROGRESS;1
+
+
+{
+  "playerPos": {
+    "X": -1.0,
+    "Y": -1.0,
+    "Z": -1.0
+  },
+  "_room": "",
+  "_userId": 2267919,
+  "_dateStamp": "17/06/2019",
+  "_timeStamp": "15:06:33.9724969",
+  "_type": "PROGRESS",
+  "_level": 1
+}
+
+_userId;_dateStamp;_timeStamp;_type;_level;2267919;17/06/2019;15:06:33.9724969;PROGRESS;0
+
+
+{
+  "playerPos": {
+    "X": 20.0,
+    "Y": 50.0,
+    "Z": 70.5
+  },
+  "_room": "first room",
+  "_userId": 2267919,
+  "_dateStamp": "17/06/2019",
+  "_timeStamp": "15:06:33.9724969",
+  "_type": "PROGRESS",
+  "_level": 0
+}
+

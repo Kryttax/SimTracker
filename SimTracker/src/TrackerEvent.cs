@@ -7,31 +7,55 @@ using System.Threading.Tasks;
 namespace SimTracker
 {
     [Serializable]
-    public abstract class TrackerEvent : IEvent
+    public class TrackerEvent : IEvent
     {
         public enum eventType { NOTYPE, BUG, PROGRESS, LEVEL_AREA, COMPLETABLE }
 
-        public int _userId { get; set; }
+        public string _userId { get; set; }
+        public string _dateStamp { get; set; }
         public string _timeStamp { get; set; }
-        public string _type { get; set; }
-        public int _level { get; set; }  
 
-        public TrackerEvent(int level)
+        public string _type { get; set; }
+        public int _level { get; set; }
+
+        public string _playerPos { get; set; }
+
+        private Serializer ser;
+
+        public TrackerEvent()
         {
-            _userId = SimTracker.Instance().user;
+            _userId = SimTracker.Instance.user;
+            _dateStamp = DateTime.Now.ToShortDateString().ToString();
+            _timeStamp = DateTime.Now.ToLongTimeString();
+            _type = eventType.NOTYPE.ToString();
+            _level = -1;
+            _playerPos = "-1,-1,-1";
+        }
+
+        public TrackerEvent(int level) : this()
+        {
             _level = level;
-            _timeStamp = DateTime.Now.ToString();
+        }
+
+        public TrackerEvent(int level, double xPos, double yPos, double zPos) : this()
+        {
+            _level = level;
+            PlayerPosition pos = new PlayerPosition(xPos, yPos, zPos);
+            _playerPos = string.Join(",", pos.X, pos.Y, pos.Z);
         }
 
         public string ToCSV()
         {
-
-            return SimTracker.instance.serializaionObjct.Find(r => r.GetType() == typeof(CSVSerializer)).Serialize(this);
+            ser = SimTracker.serializaionObjct;
+            ser.SetType(new CSVSerializer());
+            return ser.Serialize(this);
         }
 
         public string ToJson()
         {
-            return SimTracker.instance.serializaionObjct.Find(r => r.GetType() == typeof(JSONSerializer)).Serialize(this);
+            ser = SimTracker.serializaionObjct;
+            ser.SetType(new JSONSerializer());
+            return ser.Serialize(this);
         }
     }
     
