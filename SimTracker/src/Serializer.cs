@@ -6,6 +6,7 @@ using System.Threading.Tasks;
 
 namespace SimTracker
 {
+    //Context Class
     class Serializer
     {
         private ISerializer _type;

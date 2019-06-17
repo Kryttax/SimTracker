@@ -12,6 +12,7 @@ namespace SimTracker
             
         }
 
+        //Sends a serialized event to a given web address
         void IPersistence.Send<T>(T str)
         {
             try

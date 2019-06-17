@@ -6,6 +6,10 @@ using System.Threading.Tasks;
 
 namespace SimTracker
 {
+    /* Generic Events to use in-game. All of them are childs of
+     * TrackerEvent, the base Event. Each of them have their own 
+     * parameters and constructors to facilitate working with them.*/
+
     public struct PlayerPosition
     {
         public readonly double X;
@@ -23,7 +27,6 @@ namespace SimTracker
     [Serializable]
     public sealed class GeneralEvent : TrackerEvent
     {
-        //Test Event
         public GeneralEvent()
         {
             _type = eventType.NOTYPE.ToString();

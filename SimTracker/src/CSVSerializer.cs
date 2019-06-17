@@ -10,6 +10,7 @@ using CsvHelper;
 
 namespace SimTracker
 {
+    //CSV Map Generator
     public class FooMap : CsvHelper.Configuration.ClassMap<BugEvent>
     {
         public FooMap()
@@ -22,6 +23,7 @@ namespace SimTracker
         }
     }
 
+    //Serializes an event to CSV with CSVHelper's lib. Returns a serialized string.
     class CSVSerializer : ISerializer
     {
         string ISerializer.Serialize(IEvent evnt)

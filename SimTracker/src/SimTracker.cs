@@ -7,6 +7,8 @@ using System.Threading;
 
 namespace SimTracker
 {
+
+    /* MAIN CLASS */
     class SimTracker
     {
         public static SimTracker instance = null;
@@ -27,10 +29,10 @@ namespace SimTracker
         private static Persistence persistenceObject;
         private Queue<TrackerEvent> assetTrackerObject;
 
-        bool alive, flag; // bools for controling the thread
-        Thread QueueCleaner;
-        public string user { get; }
-        int tick = 3;  //Thread tick (in seconds)
+        public string user { get; }     //Player Id
+        bool alive, flag;               // bools for controling the thread
+        int tick = 3;                   //Thread tick (in seconds)
+        Thread QueueCleaner;            
 
         public SimTracker()
         {
@@ -45,27 +47,14 @@ namespace SimTracker
             QueueCleaner.Start();
         }
 
-    
+        //Generates Player's Id
         private string GenerateUserId()
         {
-            //Random random = new Random();
-            //int num = 0;
-            //int aux;
-            //for (int i = 0; i < 6;i++)
-            //{
-            //    if (i > 0)
-            //        aux = random.Next(0, 10) * (10 * num);
-            //    else
-            //        aux = random.Next(0, 10);
-            //    num += aux;
-            //}
-            //return num;
-
             RandomGenerator generate = new RandomGenerator();
-
-            return generate.RandomPassword();
+            return generate.RandomId();
         }
 
+        //Tracker Loop
         private void Runnable()
         {
             DateTime dt = DateTime.Now;
@@ -115,11 +104,13 @@ namespace SimTracker
             alive = false;
         }
 
+        //Adds an event to queue
         public void PushEvent(TrackerEvent evnt)
         {
             assetTrackerObject.Enqueue(evnt);
         }
 
+        //Serializes and sends a given event
         void ProcessEvent(TrackerEvent evnt)
         {
             persistenceObject.SetType(new FilePersistence());
@@ -134,16 +125,17 @@ namespace SimTracker
         }
     }
 
+    //Random Number and String Generator
     public class RandomGenerator
     {
-        // Generate a random number between two numbers    
+        // Generates a random number between two numbers    
         public int RandomNumber(int min, int max)
         {
             Random random = new Random();
             return random.Next(min, max);
         }
 
-        // Generate a random string with a given size    
+        // Generates a random string with a given size    
         public string RandomString(int size, bool lowerCase)
         {
             StringBuilder builder = new StringBuilder();
@@ -159,8 +151,8 @@ namespace SimTracker
             return builder.ToString();
         }
 
-        // Generate a random password    
-        public string RandomPassword()
+        // Generates a random Id    
+        public string RandomId()
         {
             StringBuilder builder = new StringBuilder();
             builder.Append(RandomString(3, false));

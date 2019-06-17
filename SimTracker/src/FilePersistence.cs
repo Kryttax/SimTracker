@@ -7,6 +7,7 @@ using System.IO;
 
 namespace SimTracker
 {
+    //Creates a new file with player's Id name and writes a serialized event
     class FilePersistence : IPersistence
     {
 
@@ -34,6 +35,7 @@ namespace SimTracker
                     return;
                 }
 
+                //Checks Unity Editor's specific path
 #if UNITY_EDITOR
                 path = Path.Combine(enviromentPath, unityPath, fileName);
 #else
