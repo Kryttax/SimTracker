@@ -14,10 +14,8 @@ namespace SimTracker
         public string _userId { get; set; }
         public string _dateStamp { get; set; }
         public string _timeStamp { get; set; }
-
         public string _type { get; set; }
         public int _level { get; set; }
-
         public string _playerPos { get; set; }
 
         private Serializer ser;

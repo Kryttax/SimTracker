@@ -4,34 +4,100 @@ using System.Collections.Generic;
 using System.Diagnostics;
 using System.IO;
 using System.Linq;
+using System.Reflection;
 using System.Text;
 using System.Threading.Tasks;
 using CsvHelper;
 
 namespace SimTracker
 {
+
+    //CSV Map Generator
     public class BaseCSVMap<T> : CsvHelper.Configuration.ClassMap<T> where T : class
     {
-        public void CreateMap(Dictionary<int, dynamic> mappings)
+        public void CreateMap(Dictionary<dynamic, dynamic> mappings)
         {
             foreach (var mapping in mappings)
             {
-
-                
-                List<dynamic> propname = new List<dynamic>() { mapping.Key };
+                var propname = mapping.Key;
                 var csvIndex = mapping.Value;
 
-                foreach(var ob in propname[0])
-                {
-                    var member = typeof(T).GetProperty(ob);
-                    Map(typeof(T), member).Index(csvIndex);
+                Type myType = propname.GetType();
+                IList<PropertyInfo> props = new List<PropertyInfo>(myType.GetProperties());
 
+                int i = 6;
+                foreach (PropertyInfo prop in props)
+                {
+                    object propValue = prop.GetValue(propname, null);
+
+                    switch (prop.Name)
+                    {
+                        case "_userId":
+                            Map(myType, prop).Index(0);
+                            break;
+                        case "_dateStamp":
+                            Map(myType, prop).Index(1);
+                            break;
+                        case "_timeStamp":
+                            Map(myType, prop).Index(2);
+                            break;
+                        case "_type":
+                            Map(myType, prop).Index(3);
+                            break;
+                        case "_level":
+                            Map(myType, prop).Index(4);
+                            break;
+                        case "_playerPos":
+                            Map(myType, prop).Index(5);
+                            break;
+                        default:
+                            Map(myType, prop).Index(i);
+                            i++;
+                            break;
+                    }
+
+                    // Do something with propValue
+                    // var member = propname.GetType().GetProperty(prop.ToString());//typeof(T).GetProperty(propValue.ToString());
+                   
                 }
+
+                //foreach (var ob in propname.GetType().GetProperties())
+                //{
+                //    var member = typeof(T).GetProperty(ob);
+                //    Map(typeof(T), member).Index(csvIndex);
+
+
+                //}
+
+                //PropertyInfo[] props = mapping.GetType().GetProperties();
+
+                //foreach (PropertyInfo prop in props)
+                //{
+                //    object[] attrs = prop.GetCustomAttributes(true);
+                //    foreach (object attr in attrs)
+                //    {
+                //        //AuthorAttribute authAttr = attr as AuthorAttribute;
+                //        //if (authAttr != null)
+                //        //{
+                //        //    string propName = prop.Name;
+                //        //    string auth = authAttr.Name;
+
+                //        //    //_dict.Add(propName, auth);
+                //        //}
+
+                //        var member = typeof(T).GetProperty(attr.ToString());
+                //        Map(typeof(T), member).Index(csvIndex);
+                //    }
+                //}
+
+               
+
+              
             }
         }
     }
 
-    ////CSV Map Generator
+
     //public class FooMap<T> : CsvHelper.Configuration.ClassMap<T> where T : class
     //{
     //    public FooMap()
@@ -51,7 +117,7 @@ namespace SimTracker
         string ISerializer.Serialize(IEvent evnt)
         {
            
-            var records = new List<IEvent> { evnt };
+            var records = new List<dynamic> { evnt };
             string result;
 
             //records.Reverse();
@@ -88,20 +154,7 @@ namespace SimTracker
                     //    // Do something with propValue
                     //}
 
-
-
                     csvWriter.NextRecord();
-
-                    ////foreach (var end in records)
-                    //{
-                    //    end.GetType().GetProperties();
-                    //    csvWriter.WriteField(end);
-                    //}
-                    //csvWriter.WriteField("_userId");
-                    //csvWriter.WriteField("_time");
-                    //csvWriter.Configuration.map(IEvent);
-                    //csvWriter.Configuration.AutoMap<BugEvent>();
-                    //csvWriter.Configuration.AutoMap<TrackerEvent>();
 
                     var map = new BaseCSVMap<dynamic>();
                     map.CreateMap(dic);
