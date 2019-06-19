@@ -1,6 +1,6 @@
 ﻿namespace SimTracker
 {
-    interface IEvent
+    interface IEvent 
     {
         string ToCSV();
 

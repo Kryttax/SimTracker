@@ -1,0 +1,6 @@
+SimTracker.GeneralEvent,SimTracker.GeneralEvent
+CDX1965,19/06/2019,12:44:12,NOTYPE,-1,"-1,-1,-1"
+SimTracker.TrackerEvent,SimTracker.TrackerEvent
+CDX1965,19/06/2019,12:44:13,NOTYPE,1,"2,4,2"
+SimTracker.ProgressEvent,SimTracker.ProgressEvent
+first room,CDX1965,19/06/2019,12:44:13,PROGRESS,0,"20,50,70,5"
