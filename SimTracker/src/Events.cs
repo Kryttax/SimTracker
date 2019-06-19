@@ -44,13 +44,14 @@ namespace SimTracker
     public sealed class BugEvent : TrackerEvent
     {
         public string _room { get; set; }
-        public string _errorMsg;
-
-        public BugEvent(int level, string room, double xPos, double yPos, double zPos, string error)
+        public string _errorMsg { get; set; }
+        public string _keyWord { get; set; }
+        public BugEvent(int level, string room, double xPos, double yPos, double zPos, string error, string keyWord)
             : base(level, xPos, yPos, zPos)
         {
             _room = room;
             _errorMsg = error;
+            _keyWord = keyWord;
             _type = eventType.BUG.ToString();
         }
 

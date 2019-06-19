@@ -20,7 +20,8 @@ namespace SimTracker
             
             Thread.Sleep(1000);
             SimTracker.Instance.PushEvent(new GeneralEvent());
-            
+            SimTracker.Instance.PushEvent(new BugEvent(0, "bugRoom", 4, 2, -8, "Testing error 1,2,3", "My_ERROR"));
+
             Thread.Sleep(1000);
             SimTracker.Instance.PushEvent(new TrackerEvent(1, 2, 4, 2));
             SimTracker.Instance.PushEvent(new ProgressEvent(0, "first room", 20, 50, 70.5));

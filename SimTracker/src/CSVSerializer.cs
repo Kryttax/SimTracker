@@ -13,19 +13,21 @@ namespace SimTracker
 {
 
     //CSV Map Generator
+    //Gets keys from event dictionary and orders general event class elements.
     public class BaseCSVMap<T> : CsvHelper.Configuration.ClassMap<T> where T : class
     {
+        static int i = 6;
+
         public void CreateMap(Dictionary<dynamic, dynamic> mappings)
         {
             foreach (var mapping in mappings)
             {
                 var propname = mapping.Key;
-                var csvIndex = mapping.Value;
 
                 Type myType = propname.GetType();
                 IList<PropertyInfo> props = new List<PropertyInfo>(myType.GetProperties());
 
-                int i = 6;
+               
                 foreach (PropertyInfo prop in props)
                 {
                     object propValue = prop.GetValue(propname, null);
@@ -33,7 +35,7 @@ namespace SimTracker
                     switch (prop.Name)
                     {
                         case "_userId":
-                            Map(myType, prop).Index(0);
+                            Map(myType, prop).Index(0); 
                             break;
                         case "_dateStamp":
                             Map(myType, prop).Index(1);
@@ -48,7 +50,7 @@ namespace SimTracker
                             Map(myType, prop).Index(4);
                             break;
                         case "_playerPos":
-                            Map(myType, prop).Index(5);
+                            Map(myType, prop).Index(5);          
                             break;
                         default:
                             Map(myType, prop).Index(i);
@@ -56,123 +58,46 @@ namespace SimTracker
                             break;
                     }
 
-                    // Do something with propValue
-                    // var member = propname.GetType().GetProperty(prop.ToString());//typeof(T).GetProperty(propValue.ToString());
-                   
+
                 }
-
-                //foreach (var ob in propname.GetType().GetProperties())
-                //{
-                //    var member = typeof(T).GetProperty(ob);
-                //    Map(typeof(T), member).Index(csvIndex);
-
-
-                //}
-
-                //PropertyInfo[] props = mapping.GetType().GetProperties();
-
-                //foreach (PropertyInfo prop in props)
-                //{
-                //    object[] attrs = prop.GetCustomAttributes(true);
-                //    foreach (object attr in attrs)
-                //    {
-                //        //AuthorAttribute authAttr = attr as AuthorAttribute;
-                //        //if (authAttr != null)
-                //        //{
-                //        //    string propName = prop.Name;
-                //        //    string auth = authAttr.Name;
-
-                //        //    //_dict.Add(propName, auth);
-                //        //}
-
-                //        var member = typeof(T).GetProperty(attr.ToString());
-                //        Map(typeof(T), member).Index(csvIndex);
-                //    }
-                //}
-
-               
-
-              
             }
         }
     }
 
 
-    //public class FooMap<T> : CsvHelper.Configuration.ClassMap<T> where T : class
-    //{
-    //    public FooMap()
-    //    {
-    //       // AutoMap();
-    //        Map(m => m._userId).Index(0);
-    //        Map(m => m._timeStamp).Index(1);
-    //        Map(m => m._dateStamp).Index(2);
-    //        Map(m => m._timeStamp).Index(3);
-    //    }
-    //}
-
     //Serializes an event to CSV with CSVHelper's lib. Returns a serialized string.
     class CSVSerializer : ISerializer
     {
-        
+
         string ISerializer.Serialize(IEvent evnt)
         {
-           
-            var records = new List<dynamic> { evnt };
+
             string result;
-
-            //records.Reverse();
-            //records.Sort();
-
+            var records = new List<dynamic> { evnt };
             var dic = records.ToDictionary(x => x, y => y);
 
             using (var mem = new MemoryStream())
             using (var writer = new StreamWriter(mem))
             using (var csvWriter = new CsvWriter(writer))
             {
-                //using (var csvWriter = new CsvWriter(writer))
-                {
-                    csvWriter.Configuration.Delimiter = ",";
-                    csvWriter.Configuration.HasHeaderRecord = false;
-                    csvWriter.Configuration.ReferenceHeaderPrefix = (memberType, memberName) => $"_{memberName}";
-                    csvWriter.Configuration.DynamicPropertySort = Comparer<string>.Create((x, y) => x.CompareTo(y));
-                    //foreach (TrackerEvent record in records)
-                    //{
-                    //    csvWriter.WriteField(record._userId);
-                    //    csvWriter.WriteField(record._timeStamp);
 
+                csvWriter.Configuration.Delimiter = ",";
+                csvWriter.Configuration.HasHeaderRecord = false;
 
-                    //}
+                //Creates new dynamic map with common CSV file order.
+                var map = new BaseCSVMap<dynamic>();
+                map.CreateMap(dic);
+                csvWriter.Configuration.RegisterClassMap(map);
 
-                    //var myType = records.GetType();
-                    //IList<System.Reflection.PropertyInfo> props = new List<System.Reflection.PropertyInfo>(myType.GetProperties());
+                csvWriter.WriteRecords(records);
 
-                    //foreach (System.Reflection.PropertyInfo prop in props)
-                    //{
-                    //    //dynamic propValue = prop.GetValue(props);
+                writer.Flush();
+                result = Encoding.UTF8.GetString(mem.ToArray());
 
-                    //    csvWriter.WriteField(prop.GetValue(myType, null));
-                    //    // Do something with propValue
-                    //}
-
-                    csvWriter.NextRecord();
-
-                    var map = new BaseCSVMap<dynamic>();
-                    map.CreateMap(dic);
-                    csvWriter.Configuration.RegisterClassMap(map);
-
-                    csvWriter.WriteRecords(records);
-
-                    writer.Flush();
-                    result = Encoding.UTF8.GetString(mem.ToArray());
-                }
             }
             return result.ToString();
         }
 
 
-        string Sort() 
-        {
-            return null;
-        }
     }
 }
