@@ -1,0 +1,40 @@
+YPR9438,20/06/2019,17:52:43,NOTYPE,-1,-1,-1,-1
+{
+  "_userId": "YPR9438",
+  "_dateStamp": "20/06/2019",
+  "_timeStamp": "17:52:43",
+  "_type": "NOTYPE",
+  "_level": -1,
+  "_playerPos": "-1,-1,-1"
+}
+YPR9438,20/06/2019,17:52:43,BUG,0,4,2,-8,bugRoom,Testing error 1,2,3,My_ERROR
+{
+  "_userId": "YPR9438",
+  "_dateStamp": "20/06/2019",
+  "_timeStamp": "17:52:43",
+  "_type": "BUG",
+  "_level": 0,
+  "_playerPos": "4,2,-8",
+  "_room": "bugRoom",
+  "_errorMsg": "Testing error 1,2,3",
+  "_keyWord": "My_ERROR"
+}
+YPR9438,20/06/2019,17:52:44,NOTYPE,1,2,4,2
+{
+  "_userId": "YPR9438",
+  "_dateStamp": "20/06/2019",
+  "_timeStamp": "17:52:44",
+  "_type": "NOTYPE",
+  "_level": 1,
+  "_playerPos": "2,4,2"
+}
+YPR9438,20/06/2019,17:52:44,PROGRESS,0,20,50,70,5,first room
+{
+  "_userId": "YPR9438",
+  "_dateStamp": "20/06/2019",
+  "_timeStamp": "17:52:44",
+  "_type": "PROGRESS",
+  "_level": 0,
+  "_playerPos": "20,50,70,5",
+  "_room": "first room"
+}

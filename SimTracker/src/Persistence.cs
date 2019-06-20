@@ -16,7 +16,7 @@ namespace SimTracker
             this._type = type;
         }
 
-        public void Send<T>(T str)
+        public void Send(string str)
         {
             _type.Send(str);
         }

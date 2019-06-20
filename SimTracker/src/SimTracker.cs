@@ -116,8 +116,8 @@ namespace SimTracker
             persistenceObject.SetType(new FilePersistence());
             serializaionObjct.SetType(new CSVSerializer());
             persistenceObject.Send(serializaionObjct.Serialize(evnt));
-            //serializaionObjct.SetType(new JSONSerializer());
-            //persistenceObject.Send(serializaionObjct.Serialize(evnt));
+            serializaionObjct.SetType(new JSONSerializer());
+            persistenceObject.Send(serializaionObjct.Serialize(evnt));
 
             //persistenceObject.SetType(new ServerPersistance());
             //persistenceObject.Send(evnt.ToCSV());

@@ -72,30 +72,34 @@ namespace SimTracker
         string ISerializer.Serialize(IEvent evnt)
         {
 
-            string result;
-            var records = new List<dynamic> { evnt };
-            var dic = records.ToDictionary(x => x, y => y);
+            //string result;
+            //var records = new List<dynamic> { evnt };
+            //var dic = records.ToDictionary(x => x, y => y);
 
-            using (var mem = new MemoryStream())
-            using (var writer = new StreamWriter(mem))
-            using (var csvWriter = new CsvWriter(writer))
-            {
+            //using (var mem = new MemoryStream())
+            //using (var writer = new StreamWriter(mem))
+            //using (var csvWriter = new CsvWriter(writer))
+            //{
 
-                csvWriter.Configuration.Delimiter = ",";
-                csvWriter.Configuration.HasHeaderRecord = false;
+            //    csvWriter.Configuration.Delimiter = ",";
+            //    csvWriter.Configuration.HasHeaderRecord = false;
 
-                //Creates new dynamic map with common CSV file order.
-                var map = new BaseCSVMap<dynamic>();
-                map.CreateMap(dic);
-                csvWriter.Configuration.RegisterClassMap(map);
+            //    //Creates new dynamic map with common CSV file order.
+            //    var map = new BaseCSVMap<dynamic>();
+            //    map.CreateMap(dic);
+            //    csvWriter.Configuration.RegisterClassMap(map);
 
-                csvWriter.WriteRecords(records);
+            //    csvWriter.WriteRecords(records);
 
-                writer.Flush();
-                result = Encoding.UTF8.GetString(mem.ToArray());
+            //    writer.Flush();
+            //    result = Encoding.UTF8.GetString(mem.ToArray());
 
-            }
-            return result.ToString();
+            //}
+
+            ////invocar .toCSV();
+            //return result.ToString();
+
+            return evnt.ToCSV();
         }
 
 

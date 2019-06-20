@@ -11,12 +11,19 @@ namespace SimTracker
     {
         public enum eventType { NOTYPE, BUG, PROGRESS, LEVEL_AREA, COMPLETABLE }
 
+        [Newtonsoft.Json.JsonProperty(Order = -7)]
         public string _userId { get; set; }
+        [Newtonsoft.Json.JsonProperty(Order = -6)]
         public string _dateStamp { get; set; }
+        [Newtonsoft.Json.JsonProperty(Order = -5)]
         public string _timeStamp { get; set; }
+        [Newtonsoft.Json.JsonProperty(Order = -4)]
         public string _type { get; set; }
+        [Newtonsoft.Json.JsonProperty(Order = -3)]
         public int _level { get; set; }
+        [Newtonsoft.Json.JsonProperty(Order = -2)]
         public string _playerPos { get; set; }
+        
 
         private Serializer ser;
 
@@ -42,18 +49,24 @@ namespace SimTracker
             _playerPos = string.Join(",", pos.X, pos.Y, pos.Z);
         }
 
-        public string ToCSV()
+        public virtual string ToCSV()
         {
-            ser = SimTracker.serializaionObjct;
-            ser.SetType(new CSVSerializer());
-            return ser.Serialize(this);
+
+            //Serializar aquí
+            //cadena texto
+            //ser = SimTracker.serializaionObjct;
+            //ser.SetType(new CSVSerializer());
+
+            string result = string.Join(",", _userId, _dateStamp, _timeStamp, _type, _level, _playerPos);
+            return result;
         }
 
-        public string ToJson()
+        public virtual string ToJson()
         {
-            ser = SimTracker.serializaionObjct;
-            ser.SetType(new JSONSerializer());
-            return ser.Serialize(this);
+
+            //ser = SimTracker.serializaionObjct;
+            //ser.SetType(new JSONSerializer());
+            return Newtonsoft.Json.JsonConvert.SerializeObject(this, Newtonsoft.Json.Formatting.Indented);
         }
     }
     

@@ -1,0 +1,36 @@
+{
+  "_userId": "SIW7383",
+  "_dateStamp": "20/06/2019",
+  "_timeStamp": "17:53:21",
+  "_type": "NOTYPE",
+  "_level": -1,
+  "_playerPos": "-1,-1,-1"
+}
+{
+  "_userId": "SIW7383",
+  "_dateStamp": "20/06/2019",
+  "_timeStamp": "17:53:21",
+  "_type": "BUG",
+  "_level": 0,
+  "_playerPos": "4,2,-8",
+  "_room": "bugRoom",
+  "_errorMsg": "Testing error 1,2,3",
+  "_keyWord": "My_ERROR"
+}
+{
+  "_userId": "SIW7383",
+  "_dateStamp": "20/06/2019",
+  "_timeStamp": "17:53:22",
+  "_type": "NOTYPE",
+  "_level": 1,
+  "_playerPos": "2,4,2"
+}
+{
+  "_userId": "SIW7383",
+  "_dateStamp": "20/06/2019",
+  "_timeStamp": "17:53:22",
+  "_type": "PROGRESS",
+  "_level": 0,
+  "_playerPos": "20,50,70,5",
+  "_room": "first room"
+}

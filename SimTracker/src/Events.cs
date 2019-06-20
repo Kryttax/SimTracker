@@ -24,26 +24,36 @@ namespace SimTracker
         }
     }
 
-    [Serializable]
-    public sealed class GeneralEvent : TrackerEvent
-    {
-        public GeneralEvent()
-        {
-            _type = eventType.NOTYPE.ToString();
-        }
+    //[Serializable]
+    //public sealed class GeneralEvent : TrackerEvent
+    //{
+    //    public GeneralEvent()
+    //    {
+    //        _type = eventType.NOTYPE.ToString();
+    //    }
 
-        public GeneralEvent(int level, string room, double xPos, double yPos, double zPos)
-            : base(level, xPos, yPos, zPos)
-        {
-            _type = eventType.NOTYPE.ToString();
-        }
+    //    public GeneralEvent(int level, string room, double xPos, double yPos, double zPos)
+    //        : base(level, xPos, yPos, zPos)
+    //    {
+    //        _type = eventType.NOTYPE.ToString();
+    //    }
 
-    }
+    //    //public override string ToCSV()
+    //    //{
+    //    //    string result = base.ToCSV();
+
+    //    //    result += ",";
+    //    //    result += string.Join(",", _room);
+
+    //    //    return result;
+    //    //}
+
+    //}
 
     [Serializable]
     public sealed class BugEvent : TrackerEvent
     {
-        public string _room { get; set; }
+        public string _room { get; private set; }
         public string _errorMsg { get; set; }
         public string _keyWord { get; set; }
         public BugEvent(int level, string room, double xPos, double yPos, double zPos, string error, string keyWord)
@@ -55,6 +65,17 @@ namespace SimTracker
             _type = eventType.BUG.ToString();
         }
 
+        public override string ToCSV()
+        {
+            string result = base.ToCSV();
+
+            result += ",\"";
+            result += string.Join(",", _room, _errorMsg, _keyWord);
+            result += "\"";
+
+            return result;
+        }
+
     }
 
     [Serializable]
@@ -63,7 +84,7 @@ namespace SimTracker
 
         //Other methods here
         //..
-
+        public string _achievement { get; private set; }
         public MilestoneEvent(int level)
             : this(level, string.Empty, -1, -1, -1) { }
 
@@ -73,12 +94,22 @@ namespace SimTracker
             _type = eventType.PROGRESS.ToString();
         }
 
+        public override string ToCSV()
+        {
+            string result = base.ToCSV();
+
+            result += ",\"";
+            result += string.Join(",", _achievement);
+            result += "\"";
+            return result;
+        }
+
     }
 
     [Serializable]
     public sealed class ProgressEvent : TrackerEvent
     {
-        public string _room { get; set; }
+        public string _room { get; private set; }
 
         public ProgressEvent(int level)
             : this(level, string.Empty, -1, -1, -1) { }
@@ -88,6 +119,17 @@ namespace SimTracker
         {
             _room = room;
             _type = eventType.PROGRESS.ToString();
+        }
+
+        public override string ToCSV()
+        {
+            string result = base.ToCSV();
+
+            result += ",\"";
+            result += string.Join(",", _room);
+            result += "\"";
+
+            return result;
         }
 
     }
