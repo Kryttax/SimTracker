@@ -113,15 +113,11 @@ namespace SimTracker
         //Serializes and sends a given event
         void ProcessEvent(TrackerEvent evnt)
         {
-            persistenceObject.SetType(new FilePersistence());
-            serializaionObjct.SetType(new CSVSerializer());
-            persistenceObject.Send(serializaionObjct.Serialize(evnt));
+            persistenceObject.SetType(new ServerPersistance());
+            //serializaionObjct.SetType(new CSVSerializer());
+            //persistenceObject.Send(serializaionObjct.Serialize(evnt));
             serializaionObjct.SetType(new JSONSerializer());
             persistenceObject.Send(serializaionObjct.Serialize(evnt));
-
-            //persistenceObject.SetType(new ServerPersistance());
-            //persistenceObject.Send(evnt.ToCSV());
-            //persistenceObject.Send(evnt.ToJson());
         }
     }
 
@@ -160,4 +156,6 @@ namespace SimTracker
             return builder.ToString();
         }
     }
+
+
 }

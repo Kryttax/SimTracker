@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace SimTracker
 {
-    /* Generic Events to use in-game. All of them are childs of
+    /* Specific Events to use in-game. All of them are childs of
      * TrackerEvent, the base Event. Each of them have their own 
      * parameters and constructors to facilitate working with them.*/
 
@@ -23,32 +23,6 @@ namespace SimTracker
             this.Z = z;
         }
     }
-
-    //[Serializable]
-    //public sealed class GeneralEvent : TrackerEvent
-    //{
-    //    public GeneralEvent()
-    //    {
-    //        _type = eventType.NOTYPE.ToString();
-    //    }
-
-    //    public GeneralEvent(int level, string room, double xPos, double yPos, double zPos)
-    //        : base(level, xPos, yPos, zPos)
-    //    {
-    //        _type = eventType.NOTYPE.ToString();
-    //    }
-
-    //    //public override string ToCSV()
-    //    //{
-    //    //    string result = base.ToCSV();
-
-    //    //    result += ",";
-    //    //    result += string.Join(",", _room);
-
-    //    //    return result;
-    //    //}
-
-    //}
 
     [Serializable]
     public sealed class BugEvent : TrackerEvent

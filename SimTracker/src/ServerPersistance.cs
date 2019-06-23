@@ -1,21 +1,16 @@
 ﻿using System;
 using System.Net;
 using System.IO;
+using Newtonsoft.Json;
 namespace SimTracker
 {
     class ServerPersistance : IPersistence
     {
 
-        private static string webAddr = "http://localhost:8080/tracker";
+        private string webAddr = "http://localhost:8080/tracker";
         private HttpWebRequest httpWebRequest;
-        private string requestType = "application/json; charset=utf-8";     //JSON/CSV
+        private string requestType = "text/plain";                          //JSON/plainText
         private string requestMethod = "POST";                              //Two methods: GET and POST
-        [Serializable]
-        public class Data
-        {
-            public string data { get; set; }
-            
-        }
 
         //Sends a serialized event to a given web address
         void IPersistence.Send(string str)
@@ -24,14 +19,14 @@ namespace SimTracker
             {
                 httpWebRequest = (HttpWebRequest)WebRequest.Create(webAddr);
                 httpWebRequest.ContentType = requestType;
-                httpWebRequest.Method = "POST";
-                //Data newData = new Data();
-                //newData.data = str.ToString();
+                httpWebRequest.Method = requestMethod;
 
-               
+
                 using (var streamWriter = new StreamWriter(httpWebRequest.GetRequestStream()))
-                {                 
-                    streamWriter.WriteLine(str);
+                {
+
+                    streamWriter.Write(str);
+                    
                 }
 
                 var httpResponse = (HttpWebResponse)httpWebRequest.GetResponse();
@@ -39,6 +34,8 @@ namespace SimTracker
                 {
                     Console.WriteLine(streamReader.ReadToEnd());
                 }
+
+
             }
             catch (WebException ex)
             {

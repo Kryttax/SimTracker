@@ -4,6 +4,10 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using CsvHelper;
+using System.Runtime.Serialization;
+using Newtonsoft.Json.Serialization;
+using System.Diagnostics.Contracts;
+
 namespace SimTracker
 {
     [Serializable]
@@ -20,12 +24,9 @@ namespace SimTracker
         [Newtonsoft.Json.JsonProperty(Order = -4)]
         public string _type { get; set; }
         [Newtonsoft.Json.JsonProperty(Order = -3)]
-        public int _level { get; set; }
+        public string _level { get; set; }
         [Newtonsoft.Json.JsonProperty(Order = -2)]
         public string _playerPos { get; set; }
-        
-
-        private Serializer ser;
 
         public TrackerEvent()
         {
@@ -33,41 +34,40 @@ namespace SimTracker
             _dateStamp = DateTime.Now.ToShortDateString().ToString();
             _timeStamp = DateTime.Now.ToLongTimeString();
             _type = eventType.NOTYPE.ToString();
-            _level = -1;
+            _level = "-1";
             _playerPos = "-1,-1,-1";
         }
 
         public TrackerEvent(int level) : this()
         {
-            _level = level;
+            _level = level.ToString();
         }
 
         public TrackerEvent(int level, double xPos, double yPos, double zPos) : this()
         {
-            _level = level;
+            _level = level.ToString();
             PlayerPosition pos = new PlayerPosition(xPos, yPos, zPos);
             _playerPos = string.Join(",", pos.X, pos.Y, pos.Z);
         }
 
         public virtual string ToCSV()
         {
-
-            //Serializar aquí
-            //cadena texto
-            //ser = SimTracker.serializaionObjct;
-            //ser.SetType(new CSVSerializer());
-
             string result = string.Join(",", _userId, _dateStamp, _timeStamp, _type, _level, _playerPos);
             return result;
         }
 
         public virtual string ToJson()
         {
+            string result = Newtonsoft.Json.JsonConvert.SerializeObject(this);
+            result = result.Replace(Environment.NewLine, String.Empty);
+            result = result.Replace("\\\"", String.Empty);
+            return result;
 
-            //ser = SimTracker.serializaionObjct;
-            //ser.SetType(new JSONSerializer());
-            return Newtonsoft.Json.JsonConvert.SerializeObject(this, Newtonsoft.Json.Formatting.Indented);
         }
+
+      
     }
-    
+
+  
+
 }
