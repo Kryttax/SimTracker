@@ -1,19 +1,11 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using CsvHelper;
-using System.Runtime.Serialization;
-using Newtonsoft.Json.Serialization;
-using System.Diagnostics.Contracts;
 
 namespace SimTracker
 {
     [Serializable]
     public class TrackerEvent : IEvent
     {
-        public enum eventType { NOTYPE, BUG, PROGRESS, LEVEL_AREA, COMPLETABLE }
+        public enum eventType { NOTYPE, BUG, PROGRESS, INTERACTION, MILESTONE, COMPLETABLE }
 
         [Newtonsoft.Json.JsonProperty(Order = -7)]
         public string _userId { get; set; }
