@@ -2,6 +2,22 @@
 
 namespace SimTracker
 {
+
+    public struct PlayerPosition
+    {
+        public readonly int X;
+        public readonly int Y;
+        public readonly int Z;
+
+        public PlayerPosition(double x, double y, double z)
+        {
+            this.X = (int) x;
+            this.Y = (int) y;
+            this.Z = (int) z;
+        }
+    }
+
+
     [Serializable]
     public class TrackerEvent : IEvent
     {
@@ -19,6 +35,8 @@ namespace SimTracker
         public string _level { get; set; }
         [Newtonsoft.Json.JsonProperty(Order = -2)]
         public string _playerPos { get; set; }
+
+
 
         public TrackerEvent()
         {

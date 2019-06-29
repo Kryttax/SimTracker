@@ -6,20 +6,6 @@ namespace SimTracker
      * TrackerEvent, the base Event. Each of them have their own 
      * parameters and constructors to facilitate working with them.*/
 
-    public struct PlayerPosition
-    {
-        public readonly double X;
-        public readonly double Y;
-        public readonly double Z;
-
-        public PlayerPosition(double x, double y, double z)
-        {
-            this.X = x;
-            this.Y = y;
-            this.Z = z;
-        }
-    }
-
     [Serializable]
     public sealed class BugEvent : TrackerEvent
     {
